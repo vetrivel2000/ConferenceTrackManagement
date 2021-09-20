@@ -7,12 +7,13 @@ import java.util.ArrayList;
 
 public class EventHandler {
     ArrayList<String> unFilled=new ArrayList<>();
-    Track track = new Track();
+
     int hour=9;
     int minute=0;
     String session="AM";
     public void scheduleEvent(ArrayList<String> list)
     {
+        Track track = new Track();
         int h=9;
         int mm=0;
         for (String eventName : list) {
@@ -49,15 +50,14 @@ public class EventHandler {
                 mm-=60;
                 h+=1;
             }
+            System.out.println(h+"hoursssss");
             if (h < 17) {
                 Event object=setEvent(s);
                 track.getEvening().add(object);
             }
-            else if(h==17)
-            {
-                h=hour;
-                mm=minute;
-            }
+            //                h=hour;
+            //                mm=minute;
+
         }
         System.out.println();
         System.out.println();
@@ -67,14 +67,14 @@ public class EventHandler {
             System.out.println(event);
         }
         System.out.println("12:0PM Lunch 60mins");
-        for (int i = 0; i <evening.size() ; i++) {
-            System.out.println(evening.get(i));
+        for (Event event : evening) {
+            System.out.println(event);
         }
         System.out.println("5:0PM NetworkingEvent");
-        track=new Track();
         hour=9;
         minute=0;
         session="AM";
+        scheduleEvent(unFilled);
     }
     public Event setEvent(String eventName)
     {
